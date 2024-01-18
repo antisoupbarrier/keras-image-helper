@@ -2,6 +2,7 @@ from keras_image_helper.preprocessors import ResnetPreprocessor
 from keras_image_helper.preprocessors import XceptionPreprocessor
 from keras_image_helper.preprocessors import VGGPreprocessor
 from keras_image_helper.preprocessors import InceptionPreprocessor
+from keras_image_helper.preprocessors import DenseNetPreprocessor
 
 
 # reference: https://keras.io/api/applications/
@@ -11,6 +12,7 @@ preprocessors = {
     'resnet50': ResnetPreprocessor,
     'vgg16': VGGPreprocessor,
     'inception_v3': InceptionPreprocessor,
+    'densenet': DenseNetPreprocessor,
 }
 
 

@@ -20,6 +20,13 @@ def caffe_preprocessing(x):
 
     return x
 
+def torch_preprocessing(x):
+    x /= 255.
+    mean = [0.485, 0.456, 0.406]
+    std = [0.229, 0.224, 0.225]
+    x -= mean
+    x /= std
+    return x
 
 class ResnetPreprocessor(BasePreprocessor):
     # sources:
@@ -77,3 +84,16 @@ class InceptionPreprocessor(BasePreprocessor):
 
     def preprocess(self, x):
         return tf_preprocessing(x)
+    
+class DenseNetPreprocessor(BasePreprocessor):
+    # sources:
+    # 
+    # https://github.com/keras-team/keras-applications/blob/master/keras_applications/densenet.py
+    #    imagenet_utils.preprocess_input(x, data_format, mode='torch', **kwargs)
+    #
+    # https://github.com/keras-team/keras-applications/blob/master/keras_applications/imagenet_utils.py
+    #   _preprocess_numpy_input, mode == 'torch'
+    # 
+
+    def preprocess(self, x):
+        return torch_preprocessing(x)
